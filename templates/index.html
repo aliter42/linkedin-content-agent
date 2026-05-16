@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LINKEDIN AGENT · Senior PM Mode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- marked.js converts the streamed markdown into HTML on the fly -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◣</span>
+      <span class="brand-name">LINKEDIN&nbsp;AGENT</span>
+    </div>
+    <div class="meta">
+      <span class="status-dot"></span>
+      <span class="meta-text">SENIOR PM MODE · v1</span>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="hero">
+      <p class="kicker">A content engine for operators, not influencers.</p>
+      <h1 class="display">
+        Stop posting like<br />
+        <em>everyone&nbsp;else</em>.
+      </h1>
+      <p class="lede">
+        Drop a theme. The agent runs a full PM thought-leader workflow:
+        trend scan, 30 ideas, polished posts, hooks, hashtags, comment strategy,
+        repurposing. Built to sound human. Tuned to avoid AI slop.
+      </p>
+    </section>
+
+    <section class="composer">
+      <label for="theme" class="composer-label">
+        <span class="composer-num">01</span>
+        <span>What's the theme?</span>
+      </label>
+      <textarea
+        id="theme"
+        placeholder="e.g. AI agents replacing PM grunt work · PMM-to-PM transitions · what nobody tells you about product reviews at Series B"
+        rows="3"
+        maxlength="500"
+      ></textarea>
+      <div class="composer-foot">
+        <!-- Preset chips populate the textarea with one click -->
+        <div class="hints">
+          <button class="chip" data-theme="Why most PMs misuse AI in their workflow">AI x PM</button>
+          <button class="chip" data-theme="The conversion optimization mistake every B2B PM makes">Conversion</button>
+          <button class="chip" data-theme="What separates Senior PMs from Group PMs in 2026">Career growth</button>
+          <button class="chip" data-theme="The product decisions that quietly kill early-stage startups">Startups</button>
+        </div>
+        <button id="run" class="run-btn">
+          <span class="run-label">RUN&nbsp;AGENT</span>
+          <span class="run-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Hidden until the first run; revealed by app.js -->
+    <section id="output-shell" class="output-shell" hidden>
+      <div class="output-head">
+        <span class="output-tag">AGENT OUTPUT</span>
+        <span id="status" class="output-status">STREAMING…</span>
+      </div>
+      <article id="output" class="output"></article>
+      <div class="output-foot">
+        <button id="copy" class="ghost-btn">COPY MARKDOWN</button>
+        <button id="reset" class="ghost-btn">NEW RUN</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Built with FastAPI · Gemini · zero generic phrasing tolerated</span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
