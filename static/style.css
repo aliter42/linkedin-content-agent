@@ -1,0 +1,214 @@
+/* LINKEDIN AGENT — editorial / operator aesthetic */
+
+:root {
+  --bg: #0d0d0c;
+  --bg-soft: #161613;
+  --bg-card: #1a1a17;
+  --line: #2a2a25;
+  --text: #f3eee2;
+  --text-dim: #a39e8e;
+  --text-faint: #6e6a5d;
+  --accent: #ff4a1c;
+  --accent-soft: rgba(255, 74, 28, 0.12);
+  --serif: "Fraunces", "Times New Roman", serif;
+  --sans: "IBM Plex Sans", -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255, 74, 28, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(255, 74, 28, 0.04), transparent 60%),
+    var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle film-grain overlay for atmosphere */
+.grain {
+  position: fixed; inset: 0; pointer-events: none;
+  opacity: 0.08; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.topbar {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 40px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { color: var(--accent); font-size: 16px; }
+.brand-name { color: var(--text); font-weight: 500; }
+.meta { display: flex; align-items: center; gap: 10px; }
+.status-dot {
+  width: 8px; height: 8px; background: var(--accent);
+  border-radius: 50%; box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.stage { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; padding: 80px 32px 120px; }
+
+.hero { margin-bottom: 64px; }
+.kicker {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+}
+.display {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(48px, 7.2vw, 92px);
+  line-height: 0.98; letter-spacing: -0.02em;
+  margin-bottom: 32px; color: var(--text);
+}
+.display em { font-style: italic; font-weight: 400; color: var(--accent); font-variation-settings: "opsz" 144; }
+.lede { font-size: 18px; line-height: 1.65; color: var(--text-dim); max-width: 620px; }
+
+.composer {
+  background: var(--bg-card); border: 1px solid var(--line);
+  padding: 32px; position: relative; margin-bottom: 48px;
+}
+/* Corner accents on the composer — visual marker that this is the "input zone" */
+.composer::before {
+  content: ""; position: absolute; top: -1px; left: -1px;
+  width: 18px; height: 18px;
+  border-top: 2px solid var(--accent); border-left: 2px solid var(--accent);
+}
+.composer::after {
+  content: ""; position: absolute; bottom: -1px; right: -1px;
+  width: 18px; height: 18px;
+  border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent);
+}
+
+.composer-label {
+  display: flex; align-items: baseline; gap: 14px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px;
+}
+.composer-num { color: var(--accent); }
+
+#theme {
+  width: 100%; background: transparent; border: none; outline: none;
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  color: var(--text); line-height: 1.45; resize: none;
+  padding: 0; letter-spacing: -0.005em;
+}
+#theme::placeholder { color: var(--text-faint); font-style: italic; }
+
+.composer-foot {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 24px; flex-wrap: wrap; margin-top: 28px;
+  padding-top: 24px; border-top: 1px solid var(--line);
+}
+.hints { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: transparent; border: 1px solid var(--line);
+  color: var(--text-dim); font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 8px 12px; cursor: pointer; transition: all 0.18s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+.run-btn {
+  background: var(--accent); color: var(--bg); border: none;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.18em; padding: 14px 22px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 12px;
+  transition: all 0.2s ease;
+}
+.run-btn:hover { background: #ff5e35; transform: translateX(2px); }
+.run-btn:disabled { opacity: 0.5; cursor: wait; transform: none; }
+.run-arrow { font-family: var(--serif); font-size: 18px; }
+
+.output-shell { border: 1px solid var(--line); background: var(--bg-soft); animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.output-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 24px; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+.output-tag { color: var(--text); }
+.output-status { color: var(--accent); }
+.output-status.done { color: var(--text-faint); }
+
+.output { padding: 40px 32px; font-size: 16px; line-height: 1.7; color: var(--text); }
+
+/* Markdown rendering inside the output */
+.output h1, .output h2, .output h3 {
+  font-family: var(--serif); font-weight: 400;
+  letter-spacing: -0.01em; color: var(--text);
+  margin-top: 2em; margin-bottom: 0.6em;
+}
+.output h1 { font-size: 32px; }
+.output h2 { font-size: 26px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.output h2:first-child { margin-top: 0; }
+.output h3 { font-size: 20px; color: var(--accent); font-style: italic; }
+.output p { margin: 0.9em 0; color: var(--text); }
+.output strong { color: var(--text); font-weight: 600; }
+.output em { font-style: italic; color: var(--text-dim); }
+.output ul, .output ol { margin: 0.9em 0 0.9em 1.5em; }
+.output li { margin: 0.4em 0; }
+.output li::marker { color: var(--accent); }
+.output blockquote {
+  border-left: 3px solid var(--accent); padding: 4px 0 4px 20px;
+  margin: 1.4em 0; font-family: var(--serif);
+  font-size: 18px; font-style: italic; color: var(--text);
+}
+.output code {
+  font-family: var(--mono); font-size: 0.88em;
+  background: var(--bg-card); padding: 2px 6px; border: 1px solid var(--line);
+}
+.output hr { border: none; border-top: 1px solid var(--line); margin: 2.4em 0; }
+
+.output-foot { display: flex; gap: 12px; padding: 18px 24px; border-top: 1px solid var(--line); }
+.ghost-btn {
+  background: transparent; border: 1px solid var(--line);
+  color: var(--text-dim); font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em;
+  padding: 10px 16px; cursor: pointer; transition: all 0.18s ease;
+}
+.ghost-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+.footer {
+  position: relative; z-index: 2; text-align: center; padding: 32px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-faint); border-top: 1px solid var(--line);
+}
+
+/* Blinking cursor while streaming, removed when done */
+.output.streaming::after {
+  content: "▊"; color: var(--accent);
+  animation: blink 0.9s steps(2) infinite; margin-left: 2px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 640px) {
+  .topbar { padding: 16px 20px; }
+  .stage { padding: 48px 20px 80px; }
+  .composer { padding: 24px 20px; }
+  .composer-foot { flex-direction: column; align-items: stretch; }
+  .run-btn { justify-content: center; }
+  .output { padding: 28px 20px; }
+}
